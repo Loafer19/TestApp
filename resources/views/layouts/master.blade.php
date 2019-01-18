@@ -24,6 +24,16 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/home" class="nav-link">Home</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ route('logout') }}" class="nav-link" 
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">Logout</a>
+      </li>
+
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+      </form>
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -37,19 +47,19 @@
       <!-- Brand Logo -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="./img/rocket.png" class="img-circle elevation-2" alt="Logo Image">
+          <img src="{{ asset('img/rocket.png')}}" class="img-circle elevation-2" alt="Logo Image">
         </div>
         <div class="info">
-          <a href="/home" class="d-block">Test-App</a>
+          <a href="/home" class="d-block">{{ Auth::user()->companyName }}</a>
         </div>
       </div>
       <!-- Person Logo -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="./img/man.png" class="img-circle elevation-2" alt="Logo Image">
+            <img src="{{ asset('img/man.png')}}" class="img-circle elevation-2" alt="Logo Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Name of user</a>
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
           </div>
         </div>
 
@@ -111,9 +121,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General Elements</p>
+                <a href="/home/createUser" class="nav-link">
+                  <i class="fas fa-user-plus nav-icon"></i>
+                  <p>Create user</p>
                 </a>
               </li>
               <li class="nav-item">

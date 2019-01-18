@@ -11,6 +11,8 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        <input id="" type="hidden" class="form-control" name="type" value="1">
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -20,6 +22,20 @@
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="companyName" class="col-md-4 col-form-label text-md-right">{{ __('Name of company') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="companyName" type="text" class="form-control{{ $errors->has('companyName') ? ' is-invalid' : '' }}" name="companyName" value="{{ old('companyName') }}" required>
+
+                                @if ($errors->has('companyName'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('companyName') }}</strong>
                                     </span>
                                 @endif
                             </div>
