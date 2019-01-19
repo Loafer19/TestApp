@@ -76,7 +76,7 @@
           @endif
           
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="/home/bill" class="nav-link">
               <i class="nav-icon fa fa-edit"></i>
               <p>
                 Add Bill

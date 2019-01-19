@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'CompanyController@index')->name('home');
 
 Route::get('/home/createUser', 'CompanyController@create');
+
+Route::resource('home/bill', 'BillController');
