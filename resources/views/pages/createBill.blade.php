@@ -21,26 +21,33 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="{{ route('register') }}">
+                <form role="form" method="POST">
                     @csrf
-                    <input id="" type="hidden" class="form-control" name="type" value="0">
-
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputName">Name</label>
-                            <input type="text" class="form-control" id="exampleInputName" name="name" placeholder="Enter name" required>
+                            <label for="exampleInputValue">Value</label>
+                            <input type="number" class="form-control" id="exampleInputValue" name="value" placeholder="Enter value" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email" required>
+                            <label>Currency</label>
+                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="currency">
+                                <option selected="selected" hidden>Select currency</option>
+                                <option value="usd">USD</option>
+                                <option value="eur">EUR</option>
+                                <option value="uah">UAH</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" required>
+                            <label>Type</label>
+                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" name="type">
+                                <option selected="selected" hidden>Select type</option>
+                                <option value="cash">Cash</option>
+                                <option value="card">Card</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword2">Confirm Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2" name="password_confirmation" placeholder="Confirm password" required>
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" rows="3" placeholder="Enter ..."></textarea>
                         </div>
                     </div>
                     <!-- /.card-body -->

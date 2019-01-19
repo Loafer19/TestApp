@@ -10,4 +10,7 @@ class Bill extends Model
     {
         return $this->hasMany('App\User');
     }
+    
+    protected $fillable = ['user_id', 'type', 'value', 'currency', 'description'];
+
 }

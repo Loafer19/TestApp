@@ -49,13 +49,25 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'type' => ['required', 'boolean'],
-            'companyName' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        if ( $data['type'] == 1) {
+            $valid = [
+                'name' => ['required', 'string', 'max:255'],
+                'type' => ['required', 'boolean'],
+                'companyName' => ['required', 'string', 'max:255'],
+                'description' => ['required', 'string', 'max:500'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
+            ];
+        } else {
+            $valid = [
+                'name' => ['required', 'string', 'max:255'],
+                'type' => ['required', 'boolean'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
+            ];
+        }
+
+        return Validator::make($data, $valid);
     }
 
     /**
@@ -78,6 +90,7 @@ class RegisterController extends Controller
                 $company = Company::create([
                     'name' => $data['companyName'],
                     'master_id' => $user->id,
+                    'description' => $data['description'],
                 ]);
 
                 $company->users()->attach($user->id);
@@ -86,6 +99,9 @@ class RegisterController extends Controller
                 $company = Company::where('id', $data['companyId'])->first();
 
                 $company->users()->attach($user->id);
+
+                \Session::flash('success', 'User was created successfully!');
+
             }
 
             return $user;

@@ -46,9 +46,26 @@ class BillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Bill $bill)
     {
-        //
+        \DB::beginTransaction();
+        try {
+            $bill->create([
+                'user_id' => Auth::user()->id,
+                'type' => $request->type,
+                'value' => $request->value,
+                'currency' => $request->currency,
+                'description' => $request->description,
+            ]);
+
+            \Session::flash('success', 'Bill was created successfully!');
+            \DB::commit();
+        } catch (\Exception $exception) {
+            \DB::rollback();
+            return redirect()->back()->withErrors(['fatal' => $exception->getMessage()]);
+        }
+
+        return redirect()->back();
     }
 
     /**

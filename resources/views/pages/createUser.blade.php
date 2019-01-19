@@ -24,7 +24,6 @@
                 <form role="form" method="POST" action="{{ route('register') }}">
                     @csrf
                     <input id="" type="hidden" class="form-control" name="companyId" value="{{ $company->id }}">
-                    <input id="" type="hidden" class="form-control" name="companyName" value="{{ $company->name }}">
                     <input id="" type="hidden" class="form-control" name="type" value="0">
 
                     <div class="card-body">

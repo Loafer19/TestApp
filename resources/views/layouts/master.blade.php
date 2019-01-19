@@ -74,7 +74,6 @@
               </a>
             </li>
           @endif
-          
           <li class="nav-item has-treeview">
             <a href="/home/bill" class="nav-link">
               <i class="nav-icon fa fa-edit"></i>
@@ -127,7 +126,34 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-
+          
+          @if ($errors->has('fatal'))
+              <div class="row primary_info_row">
+                  <div class="col">
+                      <div class="alert alert-danger" role="alert">
+                          {{ $errors->first('fatal') }}
+                      </div>
+                  </div>
+              </div>
+          @elseif($errors->any())
+              <div class="row primary_info_row">
+                  <div class="col">
+                      <div class="alert alert-danger" role="alert">
+                          {{ $errors }}
+                      </div>
+                  </div>
+              </div>
+          @endif
+          @if (\Session::has('success'))
+              <div class="row primary_info_row">
+                  <div class="col">
+                      <div class="alert alert-success" role="alert">
+                          {{ \Session::get('success') }}
+                      </div>
+                  </div>
+              </div>
+          @endif
+          
         @yield('mainContent')
 
       </div><!--/. container-fluid -->

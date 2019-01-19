@@ -42,6 +42,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Company description') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="description" rows="4" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}" required></textarea>
+                                
+                                @if ($errors->has('description'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
