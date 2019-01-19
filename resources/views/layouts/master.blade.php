@@ -6,10 +6,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>Test-App</title>
+  <title>@yield('companyName')</title>
 
   <link rel="stylesheet" href="/css/app.css">
-  <link rel="shortcut icon" href="./img/rocket.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('img/rocket.png')}}" type="image/x-icon">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -24,16 +24,6 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="/home" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('logout') }}" class="nav-link" 
-            onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">Logout</a>
-      </li>
-
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-      </form>
-
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -50,7 +40,7 @@
           <img src="{{ asset('img/rocket.png')}}" class="img-circle elevation-2" alt="Logo Image">
         </div>
         <div class="info">
-          <a href="/home" class="d-block">{{ Auth::user()->companyName }}</a>
+          <a href="/home" class="d-block">@yield('companyName')</a>
         </div>
       </div>
       <!-- Person Logo -->
@@ -76,93 +66,36 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-tree"></i>
-              <p>
-                UI Elements
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Icons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/buttons.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Buttons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/sliders.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Sliders</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          @if ( $company->master_id == Auth::user()->id)
+            <li class="nav-item">
+              <a href="/home/createUser" class="nav-link">
+                <i class="fas fa-user-plus nav-icon"></i>
+                <p>Create user</p>
+              </a>
+            </li>
+          @endif
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-edit"></i>
               <p>
-                Forms
-                <i class="fa fa-angle-left right"></i>
+                Add Bill
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/home/createUser" class="nav-link">
-                  <i class="fas fa-user-plus nav-icon"></i>
-                  <p>Create user</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Advanced Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Editors</p>
-                </a>
-              </li>
-            </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-table"></i>
+            <a href="{{ route('logout') }}" class="nav-link"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
-                Tables
-                <i class="fa fa-angle-left right"></i>
+                Logout
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Simple Tables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Data Tables</p>
-                </a>
-              </li>
-            </ul>
           </li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -194,7 +127,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        
+
         @yield('mainContent')
 
       </div><!--/. container-fluid -->
