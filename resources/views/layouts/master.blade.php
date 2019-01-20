@@ -73,15 +73,16 @@
                 <p>Create user</p>
               </a>
             </li>
+          @else
+            <li class="nav-item has-treeview">
+              <a href="/home/bill" class="nav-link">
+                <i class="nav-icon fa fa-edit"></i>
+                <p>
+                  Add Bill
+                </p>
+              </a>
+            </li>
           @endif
-          <li class="nav-item has-treeview">
-            <a href="/home/bill" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                Add Bill
-              </p>
-            </a>
-          </li>
           <li class="nav-item has-treeview">
             <a href="{{ route('logout') }}" class="nav-link"
                 onclick="event.preventDefault();

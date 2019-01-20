@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Bill;
 use App\Company;
+use App\User;
+use App\Http\Requests\CreateBillRequest;
 
 class BillController extends Controller
 {
@@ -23,7 +25,7 @@ class BillController extends Controller
     {
         $id = Auth::user()->id;
 
-        $company = Company::where('id', $id)->first();
+        $company = User::find($id)->company->first();
         
         return view('pages/createBill')->with([
             'company' => $company,
@@ -46,7 +48,7 @@ class BillController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Bill $bill)
+    public function store(CreateBillRequest $request, Bill $bill)
     {
         \DB::beginTransaction();
         try {

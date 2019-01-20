@@ -21,4 +21,6 @@ Route::get('/home', 'CompanyController@index')->name('home');
 
 Route::get('/home/createUser', 'CompanyController@create');
 
+Route::get('/home/{id}/showUser', 'CompanyController@show')->name('showUser');
+
 Route::resource('home/bill', 'BillController');

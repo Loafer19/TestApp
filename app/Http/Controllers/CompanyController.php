@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\User;
+use App\Bill;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -22,24 +23,49 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
+        try {
+            $id = Auth::user()->id;
         
-        $company = User::find($id)->company->first();
-        
-        $users = Company::find($company->id)->users;
+            $company = User::find($id)->company->first();
 
-        $master_id = $company->id;
+            if ($id == $company->master_id) {
+                $users = Company::find($company->id)->users;
+                
+                $users->map(function ($user) {
+                    $bills = User::find($user->id)->bills;
+                        
+                    $USD_bills = $bills->where('currency', 'usd')->sum('value');
+                    $EUR_bills = $bills->where('currency', 'eur')->sum('value');
+                    $UAH_bills = $bills->where('currency', 'uah')->sum('value');
 
-        if ($id == $master_id) {
-            return view('home')->with([
-                'company' => $company,
-                'users' => $users,
-            ]);
-        } else {
-            return view('home')->with([
-                'company' => $company,
-            ]);
+                    $bills = $bills->count();
+
+                    $user['sum_usd'] = $USD_bills;
+                    $user['sum_eur'] = $EUR_bills;
+                    $user['sum_uah'] = $UAH_bills;
+                    $user['sum_bills'] = $bills;
+
+                    return $user;
+                });
+
+                return view('home')->with([
+                    'company' => $company,
+                    'users' => $users,
+                ]);
+
+            } else {
+                $bills = User::find($id)->bills;
+
+                return view('home')->with([
+                    'company' => $company,
+                    'bills' => $bills,
+                ]);
+            }
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors(['fatal' => $exception->getMessage()]);
         }
+        
     }
 
     /**
@@ -75,9 +101,25 @@ class CompanyController extends Controller
      * @param  \App\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show($id, Company $company, Request $request)
     {
-        //
+        try {
+
+            $bills = User::find($id)->bills;
+            $user = User::find($id);
+            
+            $id = Auth::user()->id;
+            $company = $company->where('id', $id)->first();
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->withErrors(['fatal' => $exception->getMessage()]);
+        }
+
+        return view('pages/userBills')->with([
+            'company' => $company,
+            'bills' => $bills,
+            'user' => $user,
+        ]);
     }
 
     /**
