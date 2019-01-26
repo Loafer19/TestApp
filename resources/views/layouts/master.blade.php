@@ -8,8 +8,8 @@
 
   <title>Test-App</title>
 
-  <link rel="stylesheet" href="/css/app.css">
-  <link rel="shortcut icon" href="./img/rocket.png" type="image/x-icon">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="shortcut icon" href="{{ asset('img/rocket.png') }}" type="image/x-icon">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -37,7 +37,7 @@
       <!-- Brand Logo -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="./img/rocket.png" class="img-circle elevation-2" alt="Logo Image">
+          <img src="{{ asset('img/rocket.png') }}" class="img-circle elevation-2" alt="Logo Image">
         </div>
         <div class="info">
           <a href="/home" class="d-block">Test-App</a>
@@ -46,10 +46,10 @@
       <!-- Person Logo -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="./img/man.png" class="img-circle elevation-2" alt="Logo Image">
+            <img src="{{ asset('img/man.png') }}" class="img-circle elevation-2" alt="Logo Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Name of user</a>
+            <a href="" class="d-block">Name of user</a>
           </div>
         </div>
 
@@ -66,93 +66,32 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-tree"></i>
-              <p>
-                UI Elements
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Icons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/buttons.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Buttons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/sliders.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Sliders</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-edit"></i>
               <p>
-                Forms
-                <i class="fa fa-angle-left right"></i>
+                Add work
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>General Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Advanced Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Editors</p>
-                </a>
-              </li>
-            </ul>
           </li>
+          
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-table"></i>
+            <a href="{{ route('logout') }}" class="nav-link"
+                  onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+
+              <i class="fas fa-sign-out-alt nav-icon"></i>
               <p>
-                Tables
-                <i class="fa fa-angle-left right"></i>
+                Logout
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Simple Tables</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Data Tables</p>
-                </a>
-              </li>
-            </ul>
           </li>
+          
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -206,7 +145,7 @@
 <!-- ./wrapper -->
 
 <!-- Loafer -->
-<script src="/js/app.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 @yield('scripts')
 
