@@ -49,7 +49,7 @@
             <img src="{{ asset('img/man.png') }}" class="img-circle elevation-2" alt="Logo Image">
           </div>
           <div class="info">
-            <a href="" class="d-block">Name of user</a>
+            <a href="" class="d-block">{{ Auth::user()->name }}</a>
           </div>
         </div>
 
@@ -69,13 +69,22 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
+              <i class="nav-icon fas fa-edit"></i>
               <p>
                 Add work
               </p>
             </a>
           </li>
-          
+
+          <li class="user-panel mb-3 nav-item has-treeview">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Profile
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item has-treeview">
             <a href="{{ route('logout') }}" class="nav-link"
                   onclick="event.preventDefault();
