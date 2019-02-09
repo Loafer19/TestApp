@@ -68,7 +68,7 @@
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Add work
@@ -76,7 +76,9 @@
             </a>
           </li>
 
-          <li class="user-panel mb-3 nav-item has-treeview">
+          <li class="nav-header">Account</li>
+
+          <li class="nav-item has-treeview">
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -109,7 +111,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" id="app">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -132,7 +134,34 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        
+          
+          @if ($errors->has('fatal'))
+              <div class="row primary_info_row">
+                  <div class="col">
+                      <div class="alert alert-danger" role="alert">
+                          {{ $errors->first('fatal') }}
+                      </div>
+                  </div>
+              </div>
+          @elseif($errors->any())
+              <div class="row primary_info_row">
+                  <div class="col">
+                      <div class="alert alert-danger" role="alert">
+                          {{ $errors }}
+                      </div>
+                  </div>
+              </div>
+          @endif
+          @if (\Session::has('success'))
+              <div class="row primary_info_row">
+                  <div class="col">
+                      <div class="alert alert-success" role="alert">
+                          {{ \Session::get('success') }}
+                      </div>
+                  </div>
+              </div>
+          @endif
+          
         @yield('mainContent')
 
       </div><!--/. container-fluid -->

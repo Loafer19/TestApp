@@ -7,7 +7,7 @@
 @endsection
 
 @section('mainContent')
-    Table
+    
 @endsection
 
 @section('scripts')
