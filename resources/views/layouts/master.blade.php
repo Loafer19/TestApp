@@ -19,10 +19,10 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="/#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/home" class="nav-link">Home</a>
+        <a href="{{ route('home') }}" class="nav-link">Home</a>
       </li>
     </ul>
   </nav>
@@ -40,7 +40,7 @@
           <img src="{{ asset('img/rocket.png') }}" class="img-circle elevation-2" alt="Logo Image">
         </div>
         <div class="info">
-          <a href="/home" class="d-block">Test-App</a>
+          <a href="{{ route('welcome') }}" class="d-block">Test-App</a>
         </div>
       </div>
       <!-- Person Logo -->
@@ -59,7 +59,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/home" class="nav-link">
+            <a href="{{ route('home') }}" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
                 Dashboard
@@ -68,7 +68,7 @@
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="" class="nav-link">
+            <a href="{{ route('home') }}" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Add work
@@ -79,7 +79,7 @@
           <li class="nav-header">Account</li>
 
           <li class="nav-item has-treeview">
-            <a href="" class="nav-link">
+            <a href="{{ route('home') }}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
