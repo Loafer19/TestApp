@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('payment', 'PaymentsController');
+
+Route::post('payment/update_call_back', 'PaymentsController@updatePaymentCallBack');

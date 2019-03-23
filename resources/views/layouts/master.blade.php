@@ -68,7 +68,7 @@
           </li>
 
           <li class="nav-item has-treeview">
-            <a href="{{ route('home') }}" class="nav-link">
+            <a href="{{ route('payment.create') }}" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Add work
