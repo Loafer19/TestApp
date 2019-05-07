@@ -83,8 +83,14 @@
                         <ul class="nav navbar-nav navbar-center">
                             <li><a href="#home">Home</a></li>                    
                             <li><a href="#features">Features</a></li>
-                            <li><a href="#reviews">Reviews</a></li>
-                            <li><a href="#download">Download</a></li>
+                            
+                            @if (Auth::check())
+                                <li><a href="{{ route('home')}}">Dashboard</a></li>
+                            @else
+                                <li><a href="{{ route('login')}}">Login</a></li>
+                                <li><a href="{{ route('register')}}">Register</a></li>
+                            @endif
+                            
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>   
@@ -310,93 +316,6 @@
                 </div><!--End off container-->
             </section><!--End off Screen01 Area Section -->
 
-
-
-            <!--People Section-->
-            <section id="reviews" class="reviews m-top-100">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_reviews">
-                            <div class="col-md-8 col-md-offset-2 col-sm-12">
-                                <div class="head_title text-center">
-                                    <h2>What reviews are saying</h2>
-                                    <h5>Reviews</h5>
-                                </div>
-                            </div>
-
-                            <div class="reviews_content">
-                                <div class="col-md-6">
-                                    <div class="reviews_item m-top-40">
-                                        <div class="reviews_item_icon pull-left">“</div>
-                                        <h3>What art offers is space - a certain breathing room for the spirit. </h3>
-                                        <h5>John Updike</h5>
-                                        <div class="reviews_item_icon1 pull-right text-right">“</div>
-                                    </div>
-                                </div><!-- End off col-md-6 -->
-
-                                <div class="col-md-6">
-                                    <div class="reviews_item m-top-40">
-                                        <div class="reviews_item_icon pull-left">“</div>
-                                        <h3>We do not see nature with our eyes,
-                                            but with our understandings and our hearts.</h3>
-                                        <h5>William Hazlitt</h5>
-                                        <div class="reviews_item_icon1 pull-right text-right">“</div>
-                                    </div>
-                                </div><!-- End off col-md-6 -->
-                                <div class="col-md-6">
-                                    <div class="reviews_item m-top-40">
-                                        <div class="reviews_item_icon pull-left">“</div>
-                                        <h3>The only courage that matters is the kind 
-                                            that gets you from one moment to the next.</h3>
-                                        <h5>Mignon McLaughlin</h5>
-                                        <div class="reviews_item_icon1 pull-right text-right">“</div>
-                                    </div>
-                                </div><!-- End off col-md-6 -->
-                                <div class="col-md-6">
-                                    <div class="reviews_item m-top-40">
-                                        <div class="reviews_item_icon pull-left">“</div>
-                                        <h3>No man has a good enough memory to be a successful liar. </h3>
-                                        <h5>Abraham Lincoln</h5>
-                                        <div class="reviews_item_icon1 pull-right text-right">“</div>
-                                    </div>
-                                </div><!-- End off col-md-6 -->
-
-                            </div>
-                        </div><!-- End off Main People -->
-                    </div><!-- End off row -->
-                </div><!-- End off container -->
-            </section><!-- End off People Section-->
-
-
-            <!--App Download Section-->
-            <section id="download" class="download m-top-100">
-                <div class="download_overlay"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="main_download ">
-                            <div class="col-md-6">
-                                <div class="download_item roomy-100">
-                                    <h2 class="text-white">How Download the app?</h2>
-                                    <h5 class="text-white m-top-20">Just download the app from the store.
-                                        Simple, nice and user-friendly application of theweather.
-                                        Only relevant and useful information.</h5>
-
-                                    <div class="download_app m-top-30">
-                                        <a href=""><img src="assets/images/appstor.png" alt="" /></a>
-                                        <a href=""><img src="assets/images/googleplay.png" alt="" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="download_item m-top-70">
-                                    <img class="app_right" src="assets/images/appdownload1.png" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <!-- scroll up-->
             <div class="scrollup">
                 <a href="#"><i class="fa fa-chevron-up"></i></a>
@@ -435,24 +354,12 @@
                                         <ul class="nav navbar-nav navbar-center">
                                             <li><a href="#home">Home</a></li>                    
                                             <li><a href="#features">Features</a></li>
-                                            <li><a href="#reviews">Reviews</a></li>
-                                            <li><a href="#download">Download</a></li>
+                                            <li><a href="{{ route('login')}}">Login</a></li>
+                                            <li><a href="{{ route('register')}}">Register</a></li>
                                         </ul>
                                     </div><!-- /.navbar-collapse -->
                                 </div>   
                             </nav>
-                        </div>
-                        <div class="divider"></div>
-                        <div class="col-md-12">
-                            <div class="main_footer text-center p-top-40 p-bottom-30">
-                                <p class="wow fadeInRight" data-wow-duration="1s">
-                                    Made with 
-                                    <i class="fa fa-heart"></i>
-                                    by 
-                                    <a target="_blank" href="http://bootstrapthemes.co">Bootstrap Themes</a> 
-                                    2016. All Rights Reserved
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
